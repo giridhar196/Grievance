@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Grievance Registration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="wnameth=device-wnameth, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#erreoMessage").hide();
+            $("#txtRegNo").keyup(function () {
+                $regNo = $("#sleRgNoYr").val() + "8X1A" + $("#txtRegNo").val();
+                $.ajax({
+                    type: "POST",
+                    url: "getDetails.php",
+                    data: {
+                        'RegNo': $regNo
+                    },
+                    responseType: "html",   //expect html to be returned
+                    success: function (response) {
+                        if ($.trim(response)) {
+                            $("#submit").hide();
+                            $("#erreoMessage").show();
+                        } else {
+                            $("#submit").show();
+                            $("#erreoMessage").hide();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h2>Online Grievance Application Form</h2>
+        </div>
+        <div class="jumbotron">
+            <label id="erreoMessage" style="color:red;">Already Registered</label>
+            <form action="post.php" method="post">
+                <div class="panel-group">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">PERSONAL DETAILS</div>
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="inptName">Name of the student: </label>
+                                            <div class="col-sm-9">
+                                                <div class="col-md-2">
+                                                    <select class="form-control" required name="sleTitle">
+                                                        <option value="Mr">Mr.</option>
+                                                        <option value="Miss">Miss.</option>
+                                                        <option value="Mrs">Mrs.</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <input type="text" required class="form-control" name="inptName" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="sleGender">Gender:</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" name="sleGender">
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="sleRgNoYr">Reg No:</label>
+                                            <div class="col-sm-8">
+                                                <div class="col-md-3">
+                                                    <select class="form-control" required id="sleRgNoYr" name="sleRgNoYr">
+                                                        <option>15</option>
+                                                        <option>16</option>
+                                                    </select>
+                                                </div>
+                                                <label class="control-label col-md-1">8X1A</label>
+                                                <div class="col-md-8">
+                                                    <input type="number" required id="txtRegNo" maxlength="4" minlength="4" class="form-control" name="txtRegNo" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="txtAddress">Address:</label>
+                                            <div class="col-sm-9">
+                                                <textarea name="txtAddress" required class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="inptEmail">Email:</label>
+                                            <div class="col-sm-9">
+                                                <input type="email" name="inptEmail" required class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="inptNationality">Nationality:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" value="INDIAN" required name="inptNationality" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="dpGender">Phone:</label>
+                                            <div class="col-sm-9">
+                                                <input type="tel" name="inptPhone" maxlength="10" required class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">GRIEVANCE DETAILS</div>
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="dpGender">Gerivance Type:</label>
+                                        <div class="col-sm-9">
+                                            <select name="gtype" required class="form-control">
+                                                <option value='INSTRUCTION'>INSTRUCTION
+                                                <option value='EVALUATION'>EVALUATION
+                                                <option value='AMENITIES'>AMENITIES
+                                                <option value='ADMINISTRATION'>ADMINISTRATION
+                                                <option value='OTHERS'>OTHERS
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="txtIfAny">PREVIOUS GRIEVANCE REDRESS RELATED WITH SAME SUBJECT IF ANY :</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" required class="form-control" name="txtIfAny" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="dpGender">Grievance Details:</label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control" required name="txtGrivanceDetails"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="dpGender">Re Captcha:</label>
+                                        <div class="g-recaptcha col-md-9 col-sm-3" data-sitekey="6LfvFi8UAAAAAHk9B86JhH998Po76_UKWZFQgKgc"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
