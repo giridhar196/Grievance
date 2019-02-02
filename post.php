@@ -23,7 +23,7 @@ if ($_POST) {
             $uniqeId = uniqid();
            $sql = "SELECT * FROM grievance_registration WHERE RegistrationNumber='$RegistrationId'";
             $result = $connect->query($sql);
-            if ($result->num_rows > 0) {
+            if ($result->num_rows == 0) {
                 $sql = "INSERT INTO grievance_registration (TitlePrefex,Name,Gender, RegistrationNumber,Address, EmailId, Nationality, Phone,RegistrationType,SubjectIfAny,GrievanceDetails,UniqueId) VALUES ('$title', '$name','$gender','$RegistrationId', '$address', '$Email','$Nationality' ,'$Phone','$GerivanceType','$ifAny','$gDetails','$uniqeId')";
                 $query = $connect->query($sql);
                 if ($query === TRUE) {
@@ -33,8 +33,6 @@ if ($_POST) {
                     $validator['success'] = false;
                     $validator['messages'] = "Error while adding the member information";
                 }
-                echo $_SERVER['SERVER_ADDR'];
-                echo $validator;
 ?>
 <!DOCTYPE html>
 <html lang="en">
