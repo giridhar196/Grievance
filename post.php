@@ -11,9 +11,8 @@ if ($_POST) {
             $title = $_POST['sleTitle'];
             $name = $_POST['inptName'];
             $gender = $_POST['sleGender'];
-            $sleRgNoYr = $_POST['sleRgNoYr'];
             $regId = $_POST['txtRegNo'];
-            $RegistrationId = $sleRgNoYr . '8X1A' . $regId;
+            $RegistrationId = $regId;
             $address = $_POST['txtAddress'];
             $Email = $_POST['inptEmail'];
             $Nationality = $_POST['inptNationality'];

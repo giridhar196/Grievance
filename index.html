@@ -13,7 +13,7 @@
         $(document).ready(function () {
             $("#erreoMessage").hide();
             $("#txtRegNo").keyup(function () {
-                $regNo = $("#sleRgNoYr").val() + "8X1A" + $("#txtRegNo").val();
+                $regNo = $("#txtRegNo").val();
                 $.ajax({
                     type: "POST",
                     url: "getDetails.php",
@@ -82,16 +82,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-3" for="sleRgNoYr">Reg No:</label>
                                                     <div class="col-sm-8">
-                                                        <div class="col-md-3">
-                                                            <select class="form-control" required id="sleRgNoYr" name="sleRgNoYr">
-                                                                <option>15</option>
-                                                                <option>16</option>
-                                                            </select>
-                                                        </div>
-                                                        <label class="control-label col-md-1">8X1A</label>
-                                                        <div class="col-md-8">
-                                                            <input type="number" required id="txtRegNo" maxlength="4" minlength="4" class="form-control" name="txtRegNo" />
-                                                        </div>
+                                                        <input type="number" required id="txtRegNo" maxlength="4" minlength="4" class="form-control" name="txtRegNo" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
