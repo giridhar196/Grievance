@@ -45,18 +45,38 @@ if ($_POST) {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <div class="container">
-  <h2>Form Submitted Sucessfully</h2>
- 
-  <div class="alert alert-info">
-    <strong>Unique Id:</strong>
-    <?php
-echo $uniqeId;
-?>
- </div>
-  
-</div>
+            <h2>Form Submitted Sucessfully</h2>
+            <div class="panel panel-success ">
+                <div class="panel-heading">Thank You for using this Online Platform for airing your Grievance.</div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label>Dear <?php echo $name; ?></label>
+                            <div class="col-md-12">
+                                <strong>
+                                    Your Grievance No is:
+                                </strong>
+                                <strong><?php echo $uniqeId;?></strong>
+                            </div>
+                            <div class="col-md-12">
+                                Please quote this reference number in all your future communications.
+                            </div>
+                            <div class="col-md-12">
+                                <strong>
+                                    Your Grievance Status is:
+                                </strong>
+                                <strong style="background-color:red; color:white;">Pending</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    With Regards
+                    Customer Service Department
+                </div>
+            </div>
+        </div>
 </body>
 </html>
 <?php
