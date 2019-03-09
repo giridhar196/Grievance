@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+if (!isset($_SESSION['username'])){
+header("location:login.php");
+}
+?>
+<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
@@ -20,6 +26,7 @@
             <div class="col-md-12">
                 <div class="col-md-12">
                     <h1 class="table-striped" style="padding-left:20px;">Grievance Admin</h1>
+					<a href="logout.php" class="btn btn-primary btn-sm pull-right" style="margin-bottom:5px;">Log Out</a>
                 </div>
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
